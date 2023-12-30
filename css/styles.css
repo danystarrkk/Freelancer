@@ -10,20 +10,26 @@
 /* Globales */
 html {
     font-size: 62.5%;
-    box-sizing: border-box; /* Hack box Model */
+    box-sizing: border-box;
+    /* Hack box Model */
+    scroll-snap-type: y mandatory;
 }
-*, *:before, *:after {
+
+*,
+*:before,
+*:after {
     box-sizing: inherit;
 }
 
 
 body {
-    font-size: 16px; /* 1rem = 16px */
+    font-size: 16px;
+    /* 1rem = 16px */
     font-family: 'Krub', sans-serif;
     background-image: linear-gradient(to top, var(--gris-claro) 0%, var(--blanco) 100%);
 }
 
-.contenedor{
+.contenedor {
     max-width: 120rem;
     margin: 0 auto;
 }
@@ -40,18 +46,23 @@ body {
     border-radius: .5rem;
     width: 90%;
     text-align: center;
+    border: none;
 }
 
 @media (min-width: 768px) {
-   .boton {
-    width: auto;
-   }
+    .boton {
+        width: auto;
+    }
+}
+
+.boton:hover {
+    cursor: pointer;
 }
 
 .sombra {
-    -webkit-box-shadow: 0px 5px 15px 0px rgba(87,87,87,0.64);
-    -moz-box-shadow: 0px 5px 15px 0px rgba(87,87,87,0.64);
-    box-shadow: 0px 5px 15px 0px rgba(87,87,87,0.64);
+    -webkit-box-shadow: 0px 5px 15px 0px rgba(87, 87, 87, 0.64);
+    -moz-box-shadow: 0px 5px 15px 0px rgba(87, 87, 87, 0.64);
+    box-shadow: 0px 5px 15px 0px rgba(87, 87, 87, 0.64);
     background-color: var(--blanco);
     padding: 2rem;
     border-radius: 1rem;
@@ -71,16 +82,38 @@ h3 {
     font-size: 1.8rem;
 }
 
-h1,h2,h3 {
+h1,
+h2,
+h3 {
     text-align: center;
 }
 
 
- /* Titulos */
+/* Titulos */
 .titulo span {
     font-size: 2rem;
 }
 
+/*Utilidades*/
+.w-sm-100 {
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .w-sm-100 {
+        width: auto;
+    }
+}
+
+.flex {
+    display: flex;
+}
+
+.alinear-derecha {
+    margin-top: 2rem;
+    margin-right: 1rem;
+    justify-content: flex-end;
+}
 
 /* Navegación Principal */
 .nav-background {
@@ -93,10 +126,10 @@ h1,h2,h3 {
 }
 
 @media (min-width: 768px) {
-   .navegacion-principal{
-    flex-direction: row;
-    justify-content: space-between;
-   }
+    .navegacion-principal {
+        flex-direction: row;
+        justify-content: space-between;
+    }
 }
 
 .navegacion-principal a {
@@ -127,7 +160,7 @@ h1,h2,h3 {
 
 .contenido-hero {
     position: absolute;
-    background-color: rgb( 0 0 0 / 70% );
+    background-color: rgb(0 0 0 / 70%);
     width: 100%;
     height: 100%;
 
@@ -137,7 +170,8 @@ h1,h2,h3 {
     justify-content: center;
 }
 
-.contenido-hero h2, .contenido-hero p {
+.contenido-hero h2,
+.contenido-hero p {
     color: var(--blanco);
 }
 
@@ -146,3 +180,112 @@ h1,h2,h3 {
     align-items: flex-end;
 }
 
+/*Scroll*/
+.servicios,
+.navegacion-principal,
+.formulario,
+.footer {
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+}
+
+/* servicios */
+@media (min-width: 768px) {
+    .servicios {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        /*Esta es una sintaxis mas corta de lo de abajo*/
+        /*grid-template-columns: 1fr 1fr 1fr; fr es de fraccion osea devidimos en 3 franciones*/
+        column-gap: 1rem;
+    }
+}
+
+.servicio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.servicio h3 {
+    color: var(--secundario);
+    font-weight: normal;
+}
+
+.servicio p {
+    line-height: 2;
+    text-align: center;
+}
+
+.servicio .iconos {
+    height: 15rem;
+    width: 15rem;
+    background-color: var(--primario);
+    border-radius: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/*Formulario de contacto*/
+
+.formulario {
+    background-color: var(--gris);
+    width: min(60rem, 100%);
+    /*Utiliza el valor mas pequeño*/
+    margin: 0 auto;
+    padding: 2rem;
+    border-radius: 2rem;
+}
+
+.formulario fieldset {
+    border: none;
+}
+
+.formulario legend {
+    text-align: center;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-size: bold;
+    margin-bottom: 2rem;
+    color: var(--primario);
+}
+
+@media (min-width: 768px) {
+    .contenedor-campos {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 1rem;
+        grid-template-rows: auto auto 20rem;
+    }
+
+    .campo:nth-child(3),
+    .campo:nth-child(4) {
+        grid-column: 1 / 3;
+    }
+}
+
+.campo {
+    margin-bottom: 1rem;
+}
+
+.campo label {
+    color: var(--blanco);
+    font-weight: bold;
+    margin-bottom: .5rem;
+    display: block;
+}
+
+.campo textarea {
+    height: 20rem;
+}
+
+.input-text {
+    width: 100%;
+    border: none;
+    padding: 1.5rem;
+    border-radius: .5rem;
+}
+
+.footer {
+    text-align: center;
+}
